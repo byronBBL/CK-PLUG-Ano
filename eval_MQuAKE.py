@@ -9,8 +9,6 @@ import os
 import torch
 from transformers import AutoTokenizer, AutoModel, StoppingCriteria, StoppingCriteriaList, AutoModelForCausalLM
 import logging
-os.environ["MKL_THREADING_LAYER"] = "GNU"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 from ck import CK
 
 class LLamaQaStoppingCriteria(StoppingCriteria):
