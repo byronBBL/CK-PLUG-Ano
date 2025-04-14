@@ -71,7 +71,7 @@ class CK:
             print("Added stop word: ", stop_word, 'with the ids', stop_word_ids, flush=True)
         self.stopping_criteria.append(LLamaQaStoppingCriteria(list_stop_word_ids))
 
-    def generate(self, base_prompt, context_prompt, alpha=0.0, select_top=10, max_new_tokens=32, top_p=1, top_k=1, temperature=1.0, mode='base_no_rag', verbose=False, remove_stop_words=False, relative_top=0.1, **kwargs):
+    def generate(self, base_prompt, context_prompt, alpha=0.0, select_top=10, adaptive=False, max_new_tokens=32, top_p=1, top_k=1, temperature=1.0, mode='base_no_rag', verbose=False, remove_stop_words=False, relative_top=0.1, **kwargs):
         with torch.no_grad():
             
             if mode == 'base_no_rag':
@@ -99,7 +99,7 @@ class CK:
                 max_len_context = context_ids.shape[-1] + max_new_tokens
                 max_len = max(max_len_base, max_len_context)
                 outputs = self.model.generate(context_ids, base_ids, alpha = alpha, max_length=max_len, num_return_sequences=1,
-                                        output_scores=True, return_dict_in_generate=True, ck_decoding=True, select_top=select_top,
+                                        output_scores=True, return_dict_in_generate=True, ck_decoding=True, select_top=select_top, adaptive=adaptive,
                                         top_p=top_p, top_k=top_k, temperature=temperature, stopping_criteria=self.stopping_criteria, **kwargs,)
 
 

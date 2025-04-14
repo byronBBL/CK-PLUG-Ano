@@ -1886,6 +1886,7 @@ class GenerationMixin:
         generation_config_student: Optional[GenerationConfig] = None,
         ck_decoding: Optional[bool] = None,
         alpha: Optional[float] = 0.1,
+        adaptive: Optional[bool] = True,
         select_top: Optional[int] = 10,
         logits_processor: Optional[LogitsProcessorList] = None,
         logits_processor_student: Optional[LogitsProcessorList] = None,
@@ -2273,6 +2274,7 @@ class GenerationMixin:
                 input_ids,
                 input_ids_student,
                 alpha=alpha,
+                adaptive=adaptive,
                 select_top=select_top,
                 logits_processor=prepared_logits_processor,
                 logits_processor_student=prepared_logits_processor_student,
@@ -2608,6 +2610,7 @@ class GenerationMixin:
         input_ids: torch.LongTensor,
         input_ids_student: torch.LongTensor,
         alpha: float,
+        adaptive: bool,
         logits_processor: LogitsProcessorList,
         logits_processor_student: LogitsProcessorList,
         select_top: int,
@@ -2746,9 +2749,9 @@ class GenerationMixin:
             entropy_student = -torch.sum(probs_student * torch.log(probs_student + 1e-9), dim=-1).item()
 
             IG = entropy_student - entropy
-            e = -3.0
+            e = -1.0
             is_adjust = IG + abs(entropy) * e < 0
-            is_adaptive = False # control if adaptive enhance without alpha
+            is_adaptive = adaptive # control if adaptive enhance without alpha
             
             if is_adjust:
                 next_token_logits_student[mask] = -1e3

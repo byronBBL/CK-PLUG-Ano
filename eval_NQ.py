@@ -134,9 +134,9 @@ def create_log_path(log_path):
 def main():
     
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", default="Models/Qwen2.5-7B-Instruct", type=str)
-    parser.add_argument("--orig_path", default="work7/faith/datasets/nq/orig_dev_filtered.json", type=str)
-    parser.add_argument("--counter_path", default="work7/faith/datasets/nq/conflict_dev_filtered.json", type=str)
+    parser.add_argument("--model_name", default="./model_path", type=str)
+    parser.add_argument("--orig_path", default="./kr_data/datasets/nq/orig_dev_filtered.json", type=str)
+    parser.add_argument("--counter_path", default="./kr_data/datasets/nq/conflict_dev_filtered.json", type=str)
     parser.add_argument("--schema", default="base", type=str, help="Choose from the following prompting templates: base, attr, instr, opin, instr+opin.")
     parser.add_argument("--num-gpus", type=str, default="1")
     parser.add_argument("--max_gpu_memory", type=int, default=27)
