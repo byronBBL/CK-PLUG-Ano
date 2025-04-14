@@ -37,7 +37,13 @@ Setup with transformers (incorporating CK-PLUG)
 pip install -e transformers-4.49
 ```
 
-Run the **knowledge reliance evaluation** on the NQ, ConFiQA and MQuAKE using the following command:  
+Download the datasets for `./kr_data`:
+
+NQ: https://drive.google.com/file/d/1DJ1ajmLNAKVTBWnM7SkP93EYQ2cav3Mk/view
+ConFiQA: https://github.com/byronBBL/Context-DPO/tree/master/ConFiQA
+MQuAKE: https://github.com/princeton-nlp/MQuAKE/blob/main/datasets/MQuAKE-CF-3k-v2.json
+
+Run the **knowledge control evaluation** on the NQ, ConFiQA and MQuAKE using the following command:  
 
 ```bash
 python eval_NQ.py --model_name ./model_path --mode ck
@@ -45,6 +51,11 @@ python eval_ConFiQA.py --model_name ./model_path --mode ck
 python eval_MQuAKE.py --model_name ./model_path --mode ck
 ```
 
+Run the **adaptive enhancement evaluation** on the KILT (https://huggingface.co/datasets/facebook/kilt_tasks/viewer/hotpotqa/validation) using the following command:  
+
+```bash
+python eval_rag.py --model_name ./model_path --mode ck --adaptive True --input_file rag_data --task rag_task
+```
 
 ## Bugs or Qustions?
 
