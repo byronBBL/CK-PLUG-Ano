@@ -34,16 +34,16 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str,
-                        default='Models/Llama-3-8B-Instruct')
+                        default='./model_path')
     parser.add_argument("--num-gpus", type=str, default="1")
     parser.add_argument("--max_gpu_memory", type=int, default=27)
     parser.add_argument("--device", type=str, choices=["cuda", "cpu"], default="cuda")
     parser.add_argument('--mode', type=str, default='ck', 
                     help='ck, base_rag, base_no_rag')
-    parser.add_argument('--alpha', type=float, default=0.0)
+    parser.add_argument('--alpha', type=float, default=0.5)
     parser.add_argument('--adaptive', type=bool, default=True)
     parser.add_argument('--input_file', type=str, 
-                        default='work7/datasets/kilt/fever_bge_top100.jsonl')
+                        default='./fever_bge_top100.jsonl')
     parser.add_argument('--retrieval_augment', default=1, action='store_true')
     parser.add_argument('--use_lora', action='store_true')
     parser.add_argument('--max_new_tokens', type=int,
@@ -64,7 +64,7 @@ def main():
 
     parser.add_argument('--output_path', type=str,default=None)
     parser.add_argument('--exp_name', type=str, default=None)
-    parser.add_argument('--case_num', type=int, default=20)
+    parser.add_argument('--case_num', type=int, default=-1)
     args = parser.parse_args()
 
 
