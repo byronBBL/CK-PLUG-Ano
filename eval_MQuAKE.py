@@ -143,6 +143,8 @@ def main():
     parser.add_argument("--device", type=str, choices=["cuda", "cpu"], default="cuda")
     parser.add_argument('--mode', type=str, default='ck', 
                     help='ck, base_rag, base_no_rag')
+    parser.add_argument('--alpha', type=float, default=0.5)
+    parser.add_argument('--adaptive', type=bool, default=False)
     args = parser.parse_args()
     
     with open(args.data_path, 'r') as f:
@@ -169,7 +171,8 @@ def main():
             "max_new_tokens": 64,
             "logprobs": None,
             "mode": args.mode,
-            "alpha": 0.0,
+            "alpha": args.alpha,
+            "adaptive": args.adaptive
         }
     
     cor = 0
