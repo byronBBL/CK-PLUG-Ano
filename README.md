@@ -4,16 +4,17 @@ Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language M
 [![Arxiv](https://img.shields.io/badge/arXiv-2503.15888-B21A1B)](https://arxiv.org/abs/2503.15888)
 [![Hugging Face Transformers](https://img.shields.io/badge/%F0%9F%A4%97-Transformers-blue)](https://github.com/huggingface/transformers)
 
-Code and data for the paper "Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language Models"
+Code for the paper "Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language Models"
 
 Paper: https://arxiv.org/abs/2503.15888
+
 Authors: [Baolong Bi](https://byronbbl.github.io/) $^{1}$, [Shenghua Liu](https://shenghua-liu.github.io/) $^{1}$, [Yiwei Wang](https://wangywust.github.io/) $^{2}$, Yilong Xu $^{1}$, Junfeng Fang $^{3}$, Lingrui Mei $^{1}$, Xueqi Cheng $^{1}$
 
 $^1$ University of Chinese Academy of Sciences, $^2$ University of California, Merced, $^3$ National University of Singapore  
 
 ## Overview
 
-![Parameters vs. Context](overview.jpg)
+![Parameters vs. Context](overview.png)
 
 Retrieval-Augmented Generation (RAG) mitigates hallucinations in Large Language Models (LLMs) by integrating external knowledge.
 However, conflicts between parametric knowledge and retrieved context pose challenges, particularly when retrieved information is unreliable or the model's internal knowledge is outdated. 
@@ -25,15 +26,23 @@ Experiments demonstrate CK-PLUG's ability to significantly regulate knowledge re
 For instance, on LLaMA-3-8B, memory recall (MR) of RAG response can be adjusted within a broad range (9.9\%-71.9\%), compared to the baseline of 42.1\%.
 Moreover, CK-PLUG supports adaptive control based on the model's confidence in both internal and external knowledge, achieving consistent performance improvements across various general RAG tasks. 
 
+![CK-PLUG](framework.png)
+
 
 ## Experiments
+
+Setup with transformers (incorporating CK-PLUG)
+
+```bash
+pip install -e transformers-4.49
+```
 
 Run the **knowledge reliance evaluation** on the NQ, ConFiQA and MQuAKE using the following command:  
 
 ```bash
-python evaluation.py --model_name ./model_path --data_path ./ConFiQA/ConFiQA-QA.json --output_path ./result/output.json
-python evaluation.py --model_name ./model_path --data_path ./ConFiQA/ConFiQA-QA.json --output_path ./result/output.json
-python evaluation.py --model_name ./model_path --data_path ./ConFiQA/ConFiQA-QA.json --output_path ./result/output.json
+python eval_NQ.py --model_name ./model_path --mode ck
+python eval_ConFiQA.py --model_name ./model_path --mode ck
+python eval_MQuAKE.py --model_name ./model_path --mode ck
 ```
 
 
