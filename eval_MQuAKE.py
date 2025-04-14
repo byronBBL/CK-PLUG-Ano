@@ -172,7 +172,8 @@ def main():
             "logprobs": None,
             "mode": args.mode,
             "alpha": args.alpha,
-            "adaptive": args.adaptive
+            "adaptive": args.adaptive,
+            "select_top": 10,
         }
     
     cor = 0
