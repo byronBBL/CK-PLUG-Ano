@@ -28,6 +28,30 @@ Moreover, CK-PLUG supports adaptive control based on the model's confidence in b
 
 ![CK-PLUG](framework.png)
 
+## Datasets
+
+### Knowledge Reliance Controlling
+
+Download the datasets for `./kr_data`:
+
+NQ: [Google Drive](https://drive.google.com/file/d/1DJ1ajmLNAKVTBWnM7SkP93EYQ2cav3Mk/view)
+ConFiQA: [GitHub Repository](https://github.com/byronBBL/Context-DPO/tree/master/ConFiQA)
+MQuAKE: [GitHub Repository](https://github.com/princeton-nlp/MQuAKE/blob/main/datasets/MQuAKE-CF-3k-v2.json)
+
+### RAG Downstream Tasks
+
+In order to obtain the retrieved passages, we provide the implementation code of the retrieval stage at [\retrieval](https://github.com/byronBBL/CK-PLUG/blob/master/retrieval). Specifically,
+- [retrievers.py](https://github.com/byronBBL/CK-PLUG/blob/master/retrieval/retrievers.py): class definition of retrievers
+- [retrieval.py](https://github.com/byronBBL/CK-PLUG/blob/master/retrieval/retrieval.py): retrieval pipeline (referenced from [beir](https://github.com/beir-cellar/beir))
+- [preprocess.py](https://github.com/byronBBL/CK-PLUG/blob/master/retrieval/preprocess.py): including data preprocessing operations such as downloading, format alignment, sampling, etc.
+- [main.py](https://github.com/byronBBL/CK-PLUG/blob/master/retrieval/main.py): entry file
+
+
+Using the segmented corpus, we can run the following command to perform the retrieval operation:
+```
+python \retrieval\main.py --retriever bge --corpus_path wikipedia_100_2019_08_01.jsonl --topk 20
+```
+Remember to modify the file path for your environment.
 
 ## Experiments
 
@@ -36,12 +60,6 @@ Setup with transformers (incorporating CK-PLUG)
 ```bash
 pip install -e transformers-4.49
 ```
-
-Download the datasets for `./kr_data`:
-
-NQ: [Google Drive](https://drive.google.com/file/d/1DJ1ajmLNAKVTBWnM7SkP93EYQ2cav3Mk/view)
-ConFiQA: [GitHub Repository](https://github.com/byronBBL/Context-DPO/tree/master/ConFiQA)
-MQuAKE: [GitHub Repository](https://github.com/princeton-nlp/MQuAKE/blob/main/datasets/MQuAKE-CF-3k-v2.json)
 
 Run the **knowledge control evaluation** on the NQ, ConFiQA and MQuAKE using the following command:  
 
