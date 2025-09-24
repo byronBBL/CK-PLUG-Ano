@@ -1,16 +1,6 @@
 Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language Models
-===
-
-[![Arxiv](https://img.shields.io/badge/arXiv-2503.15888-B21A1B)](https://arxiv.org/abs/2503.15888)
-[![Hugging Face Transformers](https://img.shields.io/badge/%F0%9F%A4%97-Transformers-blue)](https://github.com/huggingface/transformers)
 
 Code for the paper "Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language Models"
-
-Paper: https://arxiv.org/abs/2503.15888
-
-Authors: [Baolong Bi](https://byronbbl.github.io/) $^{1}$, [Shenghua Liu](https://shenghua-liu.github.io/) $^{1}$, [Yiwei Wang](https://wangywust.github.io/) $^{2}$, Yilong Xu $^{1}$, Junfeng Fang $^{3}$, Lingrui Mei $^{1}$, Xueqi Cheng $^{1}$
-
-$^1$ University of Chinese Academy of Sciences, $^2$ University of California, Merced, $^3$ National University of Singapore  
 
 ## Overview
 
@@ -74,10 +64,6 @@ Run the **adaptive enhancement evaluation** on the [KILT](https://huggingface.co
 ```bash
 python eval_rag.py --model_name ./model_path --mode ck --adaptive True --input_file rag_data --task rag_task
 ```
-
-## Bugs or Qustions?
-
-If you have any questions related to the repo or the paper, or you encounter any problems when using the datasets/code, feel free to email Baolong Bi (bibaolong23z@ict.ac.cn) or open an issue!
 
 ## Citation
 
