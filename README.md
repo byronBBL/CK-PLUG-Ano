@@ -64,15 +64,3 @@ Run the **adaptive enhancement evaluation** on the [KILT](https://huggingface.co
 ```bash
 python eval_rag.py --model_name ./model_path --mode ck --adaptive True --input_file rag_data --task rag_task
 ```
-
-## Citation
-
-Please cite our paper if it's helpful to your work!
-```bibtex
-@article{bi2025parameters,
-  title={Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language Models},
-  author={Bi, Baolong and Liu, Shenghua and Wang, Yiwei and Xu, Yilong and Fang, Junfeng and Mei, Lingrui and Cheng, Xueqi},
-  journal={arXiv preprint arXiv:2503.15888},
-  year={2025}
-}
-```
